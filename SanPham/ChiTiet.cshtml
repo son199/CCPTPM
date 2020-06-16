@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "ChiTiet";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>ChiTiet</h2>
+<a class="btn btn-primary" href="@Url.Action("ThemGiohang", "Giohang", new { @iMahang = @sp.ma, @strURL = Request.Url.ToString() })">
+    Thêm Vào Giỏ Hàng
+</a>
+
