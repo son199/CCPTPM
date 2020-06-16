@@ -1,0 +1,78 @@
+﻿@using LapTop.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<LapTop.Models.SanPham>
+
+@{
+    ViewBag.Title = "SanPham";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@{
+    WEBEntities1 db = new WEBEntities1();
+    var SP = db.SanPhams.ToList();
+}
+
+<h2>QUẢN LÝ THÔNG TIN SẢN PHẨM</h2>
+
+<p>
+    @Html.ActionLink("THÊM MỚI SẢN PHẨM", "ThemmoiHang")
+</p>
+<table class="table" border="1">
+    <tr>
+        <th style="width:200px">  Mã Hàng </th>
+        <th style="width:200px">  Tên Hàng </th>
+        <th style="width:100px">  Giá Bán  </th>
+        <th style="width:300px">  Mô Tả    </th>
+        <th style="width:120px">  Ảnh Minh Họa  </th>
+        <th style="width:150px">  Ngày cập nhật </th>
+        <th style="width:120px">  Số Lượng Tồn </th>
+        <th style="width:120px">  Tên Danh Mục  </th>
+        <th style="width:100px">  Tên Thương Hiệu  </th>
+        <th style="width:200px">  </th>
+    </tr>
+
+    @foreach (var item in SP)
+    {
+        <tr id="@item.ma">
+            <td>
+                @Html.DisplayFor(modelItem => item.ma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mota)
+            </td>
+            <td>
+                <img src="@Url.Content("~/image_product/" + item.hinh)" width="120px" />
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ngaycapnhat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.soluong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DanhMuc.ten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.thuongHieu.ten)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Suahang", new { id = item.ma }) |
+                @Html.ActionLink("Chi tiết", "Chitiethang", new { id = item.ma }) |                
+                @Ajax.ActionLink("Xóa","xoa", new { @id = item.ma }, new AjaxOptions @*Xoa san pham = Ajax*@
+                    {
+                        Confirm = "Bạn muốn xóa mục này?",
+                        OnComplete = "$('#" + item.ma + "').remove()",
+                        HttpMethod = "xoa"
+                    })
+            </td>
+        </tr>
+    }
+
+</table>
+

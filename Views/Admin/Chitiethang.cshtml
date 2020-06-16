@@ -1,0 +1,69 @@
+﻿@model LapTop.Models.SanPham
+
+@{
+    ViewBag.Title = "Chitiethang";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thông Tin Chi Tiết Hàng</h2>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên hàng:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ten)
+        </dd>
+        <dt>
+            Giá bán:
+        </dt>
+        <dd>
+            @String.Format("{0:0,0}", Model.gia) VNĐ
+        </dd>
+        <dt>
+            Mô tả:
+        </dt>
+        <dd style="width:600px; text-align:justify">
+            @Html.DisplayFor(model => model.mota)
+        </dd>
+        <dt>
+            Ảnh bìa:
+        </dt>
+        <dd>
+            <img src="@Url.Content("~/Hinhsanpham/"+  Model.hinh)" width="120px" />
+        </dd>
+        <dt>
+            Ngày cập nhất:
+        </dt>
+        <dd>
+            @String.Format("{0:dd/MM/yyyy}", Model.ngaycapnhat) VNĐ
+        </dd>
+
+
+        <dt>
+            Số lượng tồn:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.soluong)
+        </dd>
+        <dt>
+            Chủ đề:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DanhMuc.ten)
+        </dd>
+        <dt>
+            Nhà cung cấp :
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.thuongHieu.ten)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("ĐIỀU CHỈNH", "Suahang", new { id = Model.ma }) |
+    @Html.ActionLink("TRỞ VỀ", "SanPham")
+</p>

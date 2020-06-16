@@ -1,0 +1,30 @@
+﻿@using LapTop.Models;
+@{
+    WEBEntities1 db = new WEBEntities1();
+    int masp = int.Parse(ViewBag.masp);
+    var SP = db.SanPhams.Find(masp);
+}
+
+@{
+    ViewBag.Title = "ChiTiet";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 class="bg-primary text-white mt-5 mb-5 p-2">CHI TIẾT SẢN PHẨM</h2>
+<div class="row">
+    <div class="col-md-4">
+        <img src="\image_product\@SP.hinh" />
+    </div>
+    <div class="col-md-8">
+        <h1>@SP.ten</h1>
+        <p>"@SP.mota</p>
+        <p> <b style="color:red">@SP.gia<b></p>
+        <a class="btn btn-primary" href="@Url.Action("ThemGiohang", "Giohang", new { @iMahang = @SP.ma, @strURL = Request.Url.ToString() })">
+            Thêm Vào Giỏ Hàng
+        </a>
+    </div>
+</div>
+
+
+@Html.Raw(ViewBag.html)
+

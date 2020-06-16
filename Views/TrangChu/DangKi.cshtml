@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "DangKi";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@Html.Raw(ViewBag.dktc)
+@using (Html.BeginForm()){
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        @Html.TextBox("txtEmail", "", new { @class = "form-control", @id = "exampleInputEmail1", @placeholder = "Enter email" })
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        @Html.TextBox("txtPassWord", "", new { @class = "form-control", @id = "exampleInputEmail1", @placeholder = "Enter PassWord" })
+       
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Họ và Tên</label>
+        @Html.TextBox("txtFullName", "", new { @class = "form-control", @id = "exampleInputEmail1", @placeholder = "Enter FullName" })
+        
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Địa Chỉ</label>
+        @Html.TextBox("txtDiaChi", "", new { @class = "form-control", @id = "exampleInputEmail1", @placeholder = "Enter Address" })
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Số Điện Thoại</label>
+        @Html.TextBox("txtPhone", "", new { @class = "form-control", @id = "exampleInputEmail1", @placeholder = "Number Phone" })
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Giới Tính</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01">
+            <option selected>Giới Tính...</option>
+            <option value="1">Nam</option>
+            <option value="2">Nữ</option>
+        </select>
+    </div>
+    <input type="submit" name="DangKi" class="btn btn-primary" value="ĐĂNG KÍ"/>
+}
